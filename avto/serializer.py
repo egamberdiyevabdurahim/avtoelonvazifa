@@ -62,3 +62,18 @@ class AvtoSer(serializers.ModelSerializer):
         model = Avto
         fields = '__all__'
         read_only_fields = ['photo']
+
+
+class AvtoGetSer(serializers.ModelSerializer):
+    model = ModelSer()
+    rusum = RusumSer()
+    photo = PhotoSer(many=True)
+    yeyishi = YeyishiSer()
+    karobka = KarobkaSer()
+    rang = RangSer()
+    shahar = ShaharSer()
+
+    class Meta:
+        model = Avto
+        fields = ['model', 'rusum', 'yili', 'photo', 'yeyishi', 'karobka', 'rang', 'kraska_holati', 'shahar', 'narhi', 'user',
+                  'data', 'yana']
