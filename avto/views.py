@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser
 
 from .models import Davlat, Viloyat, Shahar, Model, Rusum, Karobka, Rang, Yeyishi, Photo, Avto
-from .serializer import DavlatSer, ViloyatSer, ShaharSer, ModelSer, RusumSer, KarobkaSer, RangSer, YeyishiSer, PhotoSer, AvtoSer
+from .serializer import DavlatSer, ViloyatSer, ShaharSer, ModelSer, RusumSer, KarobkaSer, RangSer, YeyishiSer, PhotoSer, AvtoSer, AutoGetSer
 
 
 class DavlatApiList(APIView):
@@ -390,7 +390,7 @@ class AvtoApiList(APIView):
     parser_classes = [MultiPartParser]
     def get(self, request):
         avto = Avto.objects.all()
-        ser = AvtoSer(avto, many=True)
+        ser = AutoGetSer(avto, many=True)
         return Response(ser.data)
 
     def post(self, request):
@@ -408,7 +408,7 @@ class AvtoApiList(APIView):
 class AvtoApiDetail(APIView):
     def get(self, request, id):
         avto = Avto.objects.get(id=id)
-        ser = AvtoSer(avto)
+        ser = AutoGetSer(avto)
         return Response(ser.data)
 
     def delete(self, request, id):
