@@ -69,27 +69,29 @@ class Photo(models.Model):
 class Avto(models.Model):
     XOLATSTATUS = [
         ('Avtosalon', 'Avtosalon'),
+        ('Ishlagan', 'Ishlagan')
     ]
 
     SAVSTATUS = [
-        ('Savdolashuv bor', 'Savdolashuv bor')
+        ('Savdolashuv bor', 'Savdolashuv bor'),
+        ('Yoq', 'Yoq')
     ]
     model = models.ForeignKey(Model, on_delete=models.CASCADE, related_name='avto_modeli', verbose_name='Modeli')
     rusum = models.ForeignKey(Rusum, on_delete=models.CASCADE, related_name='avto_rusumi', verbose_name='Rusumi')
     yili = models.CharField(max_length=4, verbose_name='Yili')
-    savdolashuv = models.CharField(max_length=99, choices=SAVSTATUS, null=True, blank=True)
+    savdolashuv = models.CharField(max_length=99, choices=SAVSTATUS, default=None)
     photo = models.ManyToManyField(Photo , verbose_name='Rasm')
-    xolati = models.CharField(max_length=99, choices=XOLATSTATUS, null=True, blank=True)
+    xolati = models.CharField(max_length=99, choices=XOLATSTATUS, default=None)
     yeyishi = models.ForeignKey(Yeyishi, on_delete=models.CASCADE, related_name='avto_yeyishi', verbose_name='Yeyishi')
     karobka = models.ForeignKey(Karobka, on_delete=models.CASCADE, related_name='avto_karobkasi', verbose_name='Karobka')
     rang = models.ForeignKey(Rang, on_delete=models.CASCADE, related_name='avto_rangi', verbose_name='Rangi')
     kraska_holati = models.CharField(max_length=50, verbose_name='Kraska Holati')
     shahar = models.ForeignKey(Shahar, on_delete=models.CASCADE, related_name='avto_shahari', verbose_name='Shahar')
     narhi = models.IntegerField(verbose_name='Narhi')
-    dvigatel = models.IntegerField(verbose_name='Dvigatel Hajmi', null=True, blank=True)
+    dvigatel = models.CharField(max_length=3, verbose_name='Dvigatel Hajmi', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='avto_user', verbose_name='User')
     data = models.DateField(auto_now_add=True)
-    yana = models.TextField(verbose_name=f'qo\'shimcha')
+    yana = models.TextField(verbose_name=f'qushimcha', null=True, blank=True)
 
     def __str__(self):
         return f'{self.rusum}/{self.narhi}/{self.shahar}'

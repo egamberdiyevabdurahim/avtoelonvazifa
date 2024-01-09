@@ -75,5 +75,4 @@ class AvtoGetSer(serializers.ModelSerializer):
 
     class Meta:
         model = Avto
-        fields = ['dvigatel', 'xolati', 'model', 'rusum', 'yili', 'photo', 'yeyishi', 'karobka', 'rang', 'kraska_holati', 'shahar', 'narhi', 'user',
-                  'data', 'yana']
+        fields = ['id', 'model', 'rusum', 'yili', 'savdolashuv', 'photo', 'xolati', 'yeyishi', 'karobka', 'rang', 'kraska_holati', 'shahar', 'narhi', 'dvigatel', 'user', 'data', 'yana']
