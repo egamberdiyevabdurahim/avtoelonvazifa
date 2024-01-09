@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
 class User(models.Model):
@@ -12,3 +13,14 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+
+# class AuthUser(AbstractUser):
+#     STATUS = [
+#         ('Admin', 'ADMIN'),
+#         ('Adminstrator', 'ADMINSTRATOR'),
+#         ('User', 'User'),
+#     ]
+#     status = models.CharField(max_length=9909, choices=STATUS, default='user')
+#
+#     photo = models.ImageField(upload_to='user_photo', null=True, blank=True)
+#     phone = models.CharField(max_length=13)
